@@ -176,11 +176,25 @@ var moves = {
     // This hero will try really hard not to die.
     coward: function (gameData, helpers) {
         return helpers.findNearestHealthWell(gameData);
+    },
+
+    amortizer: function(gameData, helpers){
+        var myHero = gameData.activeHero;
+
+        if(myHero.health >= 80)
+            return moves.carefulAssassin(gameData, helpers);
+        else if(myHero.health >= 60 && myHero.health < 80)
+            return moves.safeDiamondMiner(gameData, helpers);
+        else if(myHero.health < 60)
+            return moves.healthNut(gameData, helpers);
+        else
+            return moves.healthNut(gameData, helpers);
     }
+
 };
 
 // Set our hero's strategy
-var move =  moves.aggressor;
+var move =  moves.amortizer;
 
 // Export the move function here
 module.exports = move;
