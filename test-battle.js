@@ -164,7 +164,7 @@ if (cliOptions.wait){ // wait mode
     process.stdin.setRawMode(true);
     process.stdin.setEncoding('utf8');
 
-    process.stdin.on('keypress', (str, key) => {
+    process.stdin.on('keypress', function(str, key){
         if (key.name === 'return') {
             if (currentTurn<cliOptions.turns){
                 clearScreen();

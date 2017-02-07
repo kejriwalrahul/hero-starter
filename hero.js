@@ -123,7 +123,7 @@ var moves = {
 
         }
 
-        console.log(move);
+        // console.log(move);
         return move;
     },
 
@@ -192,22 +192,22 @@ var moves = {
 
         if(myHero.health >= 80){
             move = moves.carefulAssassin(gameData, helpers);
-            console.log("Trigger 1\n");
+            // console.log("Trigger 1\n");
         }
         else if(myHero.health >= 60 && myHero.health < 80){
             move = moves.safeDiamondMiner(gameData, helpers);   
-            console.log("Trigger 2\n");
+            // console.log("Trigger 2\n");
         }
         else if(myHero.health < 60){
             move = moves.healthNut(gameData, helpers);
-            console.log("Trigger 3\n");
+            // console.log("Trigger 3\n");
         }
         else{
             move = moves.healthNut(gameData, helpers);
-            console.log("Trigger 4\n");
+            // console.log("Trigger 4\n");
         }
     
-        console.log(move);
+        // console.log(move);
         return move;
     }
 
