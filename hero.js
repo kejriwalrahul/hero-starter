@@ -112,11 +112,19 @@ var moves = {
     // This hero will attempt to kill the closest weaker enemy hero.
     carefulAssassin: function (gameData, helpers) {
         var myHero = gameData.activeHero;
+        var move; 
+
         if (myHero.health < 50) {
-            return helpers.findNearestHealthWell(gameData);
+            move =  helpers.findNearestHealthWell(gameData);
         } else {
-            return helpers.findNearestWeakerEnemy(gameData);
+            move =  helpers.findNearestWeakerEnemy(gameData);
+            if(!move)
+                move =  helpers.findNearestEnemy(gameData);
+
         }
+
+        console.log(move);
+        return move;
     },
 
     // The "Safe Diamond Miner"
@@ -180,15 +188,27 @@ var moves = {
 
     amortizer: function(gameData, helpers){
         var myHero = gameData.activeHero;
+        var move;
 
-        if(myHero.health >= 80)
-            return moves.carefulAssassin(gameData, helpers);
-        else if(myHero.health >= 60 && myHero.health < 80)
-            return moves.safeDiamondMiner(gameData, helpers);
-        else if(myHero.health < 60)
-            return moves.healthNut(gameData, helpers);
-        else
-            return moves.healthNut(gameData, helpers);
+        if(myHero.health >= 80){
+            move = moves.carefulAssassin(gameData, helpers);
+            console.log("Trigger 1\n");
+        }
+        else if(myHero.health >= 60 && myHero.health < 80){
+            move = moves.safeDiamondMiner(gameData, helpers);   
+            console.log("Trigger 2\n");
+        }
+        else if(myHero.health < 60){
+            move = moves.healthNut(gameData, helpers);
+            console.log("Trigger 3\n");
+        }
+        else{
+            move = moves.healthNut(gameData, helpers);
+            console.log("Trigger 4\n");
+        }
+    
+        console.log(move);
+        return move;
     }
 
 };
